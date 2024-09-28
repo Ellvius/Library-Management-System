@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon sever.js"
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "concurrently \"nodemon server.js\" \"cd client && npm start\""
   },
   "keywords": [],
   "author": "",
@@ -18,5 +18,8 @@
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
   }
 }

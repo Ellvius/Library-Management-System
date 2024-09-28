@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { getBooks } from '../services/bookService';
+import axios from 'axios'; // Import axios to make API calls
 
 const GetBooks = () => {
   const [books, setBooks] = useState([]);
 
+  // Fetch books function, originally from bookService
+  const getBooks = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/books'); // Replace with your backend URL
+      setBooks(response.data); // Set books data in state
+    } catch (error) {
+      console.error('Error fetching books:', error);
+    }
+  };
+
   useEffect(() => {
     const fetchBooks = async () => {
-      const booksData = await getBooks();
-      setBooks(booksData);
+      await getBooks(); // Call getBooks to fetch books
     };
     fetchBooks();
   }, []);
